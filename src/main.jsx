@@ -4,7 +4,10 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import "./index.css";
 
-import Root from "./routes/Root";
+import Root, {
+  loader as rootLoader,
+  action as rootAction,
+} from "./routes/Root";
 import Contact from "./routes/Contact";
 import ErrorPage from "./ErrorPage";
 
@@ -12,6 +15,8 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    loader: rootLoader,
+    action: rootAction,
     errorElement: <ErrorPage />,
     children: [
       {
