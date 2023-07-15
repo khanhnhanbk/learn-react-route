@@ -6,7 +6,7 @@ Tổng kết lại những gì đã học từ [React Router Tutorial]
 
 ## Tại sao lại sử dụng react-route-dom
 
-Route nói chung là cách điều hướng khi ở phía client. Theo lý thuyết thông thường học ở nhà trường thì mỗi khi link (url) thay đổi, ta lại gửi một **request** đến server, server sẽ gửi về **Response** và phải **render** lại trang web. Điều ấy là giảm hiệu năng của những trang web có nhiều phân trang.
+Route nói chung là cách điều hướng khi ở phía client. Theo lý thuyết thông thường học ở nhà trường thì mỗi khi link (url) thay đổi, ta lại gửi một **request** đến server, server sẽ gửi về **Response** và phải **render** lại trang web. Điều ấy làm giảm hiệu năng của những trang web có nhiều phân trang.
 
 Ý tưởng của **react-route-dom** là chỉ gửi resquest những components chưa có, còn cái có rồi thì không cần phải render lại. Cụ thể là phần **Outlet**
 
@@ -27,7 +27,7 @@ Sử dụng tính năng này với `Router`, `Link` và `Form` (🎗 Nhớ viế
 
 ### Nested Routes
 
-Mọi thành phần của URL đều phải có ý nghĩa (mỗi phần tác ra bởi dấu `/`)
+Mọi thành phần của URL đều phải có ý nghĩa (mỗi phần tách ra bởi dấu `/`)
 
 Mỗi thành phần cần xác định:
 
@@ -38,19 +38,32 @@ Tham khảo tại link [Visualization]
 
 [Visualization]: https://remix.run/_docs/routing
 
-### Dynamic Segments
+### Dynamic Segments (Đường link động (có thể thay đổi))
 
-Segments of the URL can be dynamic placeholders that are parsed and provided to various apis.
+Ta có thể coi đó là một tham số khi người dùng truyền nội dung vào URL.
+
+Ta xét ví dụ dưới đây:
 
 ```javascript
 <Route path="projects/:projectId/tasks/:taskId" />
 ```
 
-The two segments with : are dynamic.
+Dấu `:` thể hiện đó là một tham số khi truyền vào. Ví dụ một đường link thực tế ứng với định nghĩa trên là: `projects/dsfa9ef/tasks/222kd`
 
-### Ranked Route Matching
+Khi render ta sẽ có cách lấy hai tham số trong một object gọi là Params.
 
-When matching URLs to routes, React Router will rank the routes according to the number of segments, static segments, dynamic segments, splats, etc. and pick the most specific match.
+```json
+{
+  "projectId": "dsfa9ef",
+  "taskId": "222kd"
+}
+```
+
+### Ranked Route Matching (Một vấn đề liên quan đến sử dụng tham số ở trên)
+
+✋ When matching URLs to routes, React Router will rank the routes according to the number of segments, static segments, dynamic segments, splats, etc. and pick the most specific match.
+
+Nói tóm lại ý đoạn trên là URL của chúng ta sẽ match với static segments trước. Xem ví dụ sẽ hiểu mà.
 
 For example, consider these two routes:
 
